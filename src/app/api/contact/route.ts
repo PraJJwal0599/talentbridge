@@ -1,4 +1,4 @@
-import { resend } from "@/lib/resend";
+import { Resend } from "resend";
 import ContactFormEmail from "@/components/ContactFormEmail";
 import { NextResponse } from "next/server";
 
@@ -14,6 +14,7 @@ export async function POST(request: Request) {
       );
     }
 
+    const resend = new Resend(process.env.RESEND_API_KEY);
     await resend.emails.send({
       from: "TalentBridge <onboarding@resend.dev>",
       to: [process.env.RESEND_TO_EMAIL!],
